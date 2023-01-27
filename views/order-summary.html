@@ -1,27 +1,16 @@
-<!-- diner-home.html -->
+<!-- order-summary.html -->
 
 <include href="views/header.html"></include>
-
 <body>
 
 <div class="container">
-    <h1>Welcome to Kev's Diner!</h1>
-    <p>We serve the best food</p>
-    <img src="images/officePic.jpg">
-    <a role="button" class="btn btn-primary"
-       href="order1">
-    Place an order
-    </a>
+    <h1>Thank you for your order!</h1>
+    <p>You ordered {{ @SESSION.food }} for {{ @SESSION.meal }}</p>
 </div>
-
-
-
-<!-- Add image, few more styles, favicon, and About Us section -->
 
 
 <!-- Bootstrap Bundle with Popper -->
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p" crossorigin="anonymous"></script>
-
 
 </body>
 </html>
