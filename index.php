@@ -42,8 +42,20 @@ $f3->route('GET /lunch', function () {
     echo $view->render("views/lunch.html");
 });
 
+// define an order-form2 (328/diner/order-form2)
+$f3->route('GET /order2', function () {
+
+    // instantiate a view
+    $view = new Template();
+    echo $view->render("views/order-form2.html");
+});
+
+
+
 // define a order-form1 route (328/diner/order-form1)
 $f3->route('GET|POST /order1', function ($f3) {
+
+    //var_dump($_POST);
 
     // if the form as been posted
     if ($_SERVER['REQUEST_METHOD'] == 'POST'){
@@ -53,7 +65,7 @@ $f3->route('GET|POST /order1', function ($f3) {
         $_SESSION['meal'] = $_POST['meal'];
 
         // redirect to summary page
-        $f3->reroute('summary');
+        $f3->reroute('order2');
 
     }
 
