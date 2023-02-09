@@ -13,6 +13,9 @@ session_start();
 
 // require autoload file
 require_once('vendor/autoload.php');
+require_once('model/data-layer.php');
+
+//var_dump( getMeals() );
 
 // instantiate F3 base class
 $f3 = Base::instance();
@@ -43,7 +46,21 @@ $f3->route('GET /lunch', function () {
 });
 
 // define an order-form2 (328/diner/order-form2)
-$f3->route('GET /order2', function () {
+$f3->route('GET|POST /order2', function ($f3) {
+
+//If the form has been submitted
+    if ($_SERVER['REQUEST_METHOD'] == 'POST') {
+
+        //Move data from POST array to SESSION array
+        $_SESSION['conds'] = implode(", ",$_POST['conds']);
+
+        //Redirect to summary page
+        $f3->reroute('summary');
+    }
+
+
+    $f3->set('condiments', getCondiments());
+
 
     // instantiate a view
     $view = new Template();
@@ -68,6 +85,9 @@ $f3->route('GET|POST /order1', function ($f3) {
         $f3->reroute('order2');
 
     }
+
+    // add meals to F3 hive
+    $f3->set('meals', getMeals());
 
 
     // instantiate a view
